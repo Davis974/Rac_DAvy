@@ -1,15 +1,4 @@
-from models import Client, Employe, Film, Categorie
 
-# Création d'employés fictifs dans un tableau
-# le tableau c'est employes = []
-# Et chaque ligne à l'intérieur de ce tableau c'est pour créer une entité Employe
-# Auquel on va passer les paramètres Nom, Prénom, Date de naissance, Nom d'utilisateur, mot de passe et role
-employes = [
-    Employe("John", "Doe", "M", "2023-01-01", "admin123", "password123", "total"),
-    Employe("Jane", "Smith", "F", "2022-05-15", "reader456", "securepass", "lecture"),
-    Employe("John", "Brown", "M", "2024-02-01", "john_user", "johnpass123", "total"),
-    Employe("Jane", "White", "F", "2024-03-15", "jane_user", "janepass456", "lecture")
-]
 
 # Même chose ici. On a un tableau clients = []
 # Et dedans on a créé 2 entités Client
