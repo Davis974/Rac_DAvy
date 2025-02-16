@@ -1,5 +1,88 @@
 from models import Client, Employe, Film, Categorie
-r la liste des clients en appelant
+
+# Création d'employés fictifs dans un tableau
+# le tableau c'est employes = []
+# Et chaque ligne à l'intérieur de ce tableau c'est pour créer une entité Employe
+# Auquel on va passer les paramètres Nom, Prénom, Date de naissance, Nom d'utilisateur, mot de passe et role
+employes = [
+    Employe("John", "Doe", "M", "2023-01-01", "admin123", "password123", "total"),
+    Employe("Jane", "Smith", "F", "2022-05-15", "reader456", "securepass", "lecture"),
+    Employe("John", "Brown", "M", "2024-02-01", "john_user", "johnpass123", "total"),
+    Employe("Jane", "White", "F", "2024-03-15", "jane_user", "janepass456", "lecture")
+]
+
+# Même chose ici. On a un tableau clients = []
+# Et dedans on a créé 2 entités Client
+clients = [
+    Client("Alice", "Walker", "F", "2022-10-01", "alice@example.com", "alice1234"),
+    Client("Bob", "Johnson", "M", "2023-06-15", "bob@example.com", "bobpass")
+]
+
+# Même chose ici.
+films = [
+    Film("Film 1", 120, "Un film d'action captivant."),
+    Film("Film 2", 90, "Une comédie hilarante.")
+]
+
+# Même chose ici.
+categories = [
+    Categorie("Action", "Des films palpitants et intenses."),
+    Categorie("Comédie", "Des films pour rire et se détendre.")
+]
+
+# on crée une fonction que l'on nomme afficher_clients
+
+def afficher_clients():
+    # La première chose qu'il fait c'est d'écrire Liste des clients
+    # le symbole \n permet de faire un saut de ligne. Plus on en rajoute, plus on créé des espaces
+    print("\nListe des clients :")
+    # Ensuite on fait une boucle qui a la structure suivante
+    # for _____ : et on ajoute après les 2 points ce que l'on souhaite exécuter
+    # dans notre exemple on créé un index que l'on nomme idx (C'est just un chiffre qui augmente ici)
+    # on va aller chercher le tableau clients et on va dire que l'on démarre le compteur à 1
+    # sur cette même ligne on voit le mot client au singulier, cela veut dire que chaque entrée que l'on va
+    # trouver dans le tableau clients on va l'appeler client
+    for idx, client in enumerate(clients, start=1):
+        print(f"{idx}. {client.nom} {client.prenom} - {client.courriel}")
+
+# on créé la fonction ajouter_client
+def ajouter_client():
+    # La première chose qu'il fait c'est d'écrire Ajout d'un nouveau client toujours avec notre espace au dessus \n
+    print("\nAjout d'un nouveau client")
+    # on va créer des zones de textes dans lesquelles on va pouvoir écrire. Ca s'appelle des input
+    # donc chaque input aura un intitulé comme par exemple Nom
+    # Strip permet de retirer les espaces avant et après ce que l'on aura écrit
+    # on stocke ses informations dans des variables comme par exemple nom (qui est au début de la ligne)
+    nom = input("Nom : ").strip()
+    prenom = input("Prénom : ").strip()
+    courriel = input("Courriel : ").strip()
+    password = input("Mot de passe (min 8 caractères) : ").strip()
+
+    # len veut dire longueur donc ici le code veut dire : SI la longueur de la variable password est inférieur à 8
+    # Alors affiche un message d'erreur et arrête ça là
+    if len(password) < 8:
+        print("Erreur : Le mot de passe doit contenir au moins 8 caractères.")
+        return
+
+    # any va vérifier si l'information qu'on lui donne existe deja. Ici on vérifie si le courriel entré est déjà dans
+    # des courriels des clients. Si c'est le cas alors on met un message d'erreur et on arrête ça là
+    if any(client.courriel == courriel for client in clients):
+        print("Erreur : Le courriel doit être unique.")
+        return
+
+    # Si on a pas d'erreur alors on va créer une nouvelle entité Client() avec dedans les informations que l'on
+    # aura entré plus haut. J'ai mis Non spécifié pour le sexe mais on pourrait modifier le code plus haut
+    # pour demander cette information. Et j'avais mis une date bidon pour la date
+    # le nouveau client que l'on va créer on va le stocker dans nouveau_client
+    # et on va l'ajouter a la suite de tous nos autres clients dans le tableau clients
+    # on finit par écrire que le client a été bien ajouté
+    nouveau_client = Client(nom, prenom, "Non spécifié", "2024-11-26", courriel, password)
+    clients.append(nouveau_client)
+    print(f"Client {nom} {prenom} ajouté avec succès.")
+
+# on créé la fonction modifier_client
+def modifier_client():
+    # La 1ere chose qu'on fait c'est d'afficher la liste des clients en appelant
     # la fonction afficher_clients
     afficher_clients()
      # on va créer des zones de textes dans lesquelles on va pouvoir écrire. Ca s'appelle des input
