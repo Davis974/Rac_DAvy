@@ -3,7 +3,7 @@ from tkinter import messagebox
 from models import Client, Employe, Film, Categorie
 
 # Données simulées
-# Employés codés en dur
+# Employés codés en dur test
 employes = [
     Employe("John", "Doe", "M", "2023-01-01", "admin123", "password123", "total"),
     Employe("Jane", "Smith", "F", "2022-05-15", "reader456", "securepass", "lecture"),
