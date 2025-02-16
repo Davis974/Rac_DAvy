@@ -69,11 +69,7 @@ class Application(tk.Tk):
         tk.Label(self, text="Gestion des clients et films", font=("Arial", 18)).pack(pady=20)
 
         # Liste des clients
-        tk.Label(self, text="Liste des clients").pack(pady=10)
-        self.client_list = tk.Listbox (self, width=40, height=5)
-        for client in clients:
-            self.client_list.insert(tk.END, f"{client.nom} {client.prenom} - {client.courriel} ")
-        self.client_list.pack(pady=10)
+
 
         # Liste des films
         tk.Label(self, text="Liste des films").pack(pady=10)
