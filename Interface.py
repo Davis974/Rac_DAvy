@@ -19,8 +19,8 @@ clients = [
 
 # Films codés en dur
 films = [
-    Film("Titanic", 120, "Un film d'action captivant."),
-    Film("Avatar", 90, "Une comédie hilarante.")
+    Film("Film 1", 120, "Un film d'action captivant."),
+    Film("Film 2", 90, "Une comédie hilarante.")
 ]
 
 # Catégories codées en dur
@@ -70,14 +70,14 @@ class Application(tk.Tk):
 
         # Liste des clients
         tk.Label(self, text="Liste des clients").pack(pady=10)
-        self.client_list = tk.Listbox (self, width=40, height=5)
+        self.client_list = tk.Listbox(self)
         for client in clients:
-            self.client_list.insert(tk.END, f"{client.nom} {client.prenom} - {client.courriel} ")
+            self.client_list.insert(tk.END, f"{client.nom} {client.prenom} - {client.courriel}")
         self.client_list.pack(pady=10)
 
         # Liste des films
         tk.Label(self, text="Liste des films").pack(pady=10)
-        film_list = tk.Listbox(self, width=20, height=5)
+        film_list = tk.Listbox(self)
         for film in films:
             film_list.insert(tk.END, f"{film.nom} ({film.duree} min)")
         film_list.pack(pady=10)
