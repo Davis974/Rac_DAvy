@@ -1,4 +1,15 @@
+from models import Client, Employe, Film, Categorie
 
+# Création d'employés fictifs dans un tableau
+# le tableau c'est employes = []
+# Et chaque ligne à l'intérieur de ce tableau c'est pour créer une entité Employe
+# Auquel on va passer les paramètres Nom, Prénom, Date de naissance, Nom d'utilisateur, mot de passe et role
+employes = [
+    Employe("John", "Doe", "M", "2023-01-01", "admin123", "password123", "total"),
+    Employe("Jane", "Smith", "F", "2022-05-15", "reader456", "securepass", "lecture"),
+    Employe("John", "Brown", "M", "2024-02-01", "john_user", "johnpass123", "total"),
+    Employe("Jane", "White", "F", "2024-03-15", "jane_user", "janepass456", "lecture")
+]
 
 # Même chose ici. On a un tableau clients = []
 # Et dedans on a créé 2 entités Client
@@ -107,68 +118,3 @@ def modifier_client():
     if any(c.courriel == courriel and c != client for c in clients):
         print("Erreur : Le courriel doit être unique.")
         return
-
-    # on met à jour les informations du client
-    client.nom = nom
-    client.prenom = prenom
-    client.courriel = courriel
-    print("Les informations du client ont été mises à jour avec succès.")
-
-# on créé la fonction supprimer_client
-def supprimer_client():
-    # La 1ere chose qu'on fait c'est d'afficher la liste des clients en appelant
-    # la fonction afficher_clients
-    afficher_clients()
-    # Ensuite on stocke le choix que l'on a fait dans la liste dans une variable nommée CHOIX
-    choix = input("\nEntrez le numéro du client à supprimer (ou 'q' pour annuler) : ").strip()
-
-    # si on veut quitter on choisit Q
-    if choix.lower() == 'q':
-        return
-
-    # même chose avec les choix invalides ici
-    try:
-        index = int(choix) - 1
-        client = clients[index]
-    except (ValueError, IndexError):
-        print("Erreur : Numéro invalide.")
-        return
-
-    # On créé ici une question et on va stocker la réponse dans une variable CONFIRMATION
-    confirmation = input(f"Êtes-vous sûr de vouloir supprimer {client.nom} {client.prenom} ? (o/n) : ").strip().lower()
-    #si la réponse est O alors on supprimer l'entrée dans le tableau et on écrit un texte
-    if confirmation == 'o':
-        del clients[index]
-        print("Client supprimé avec succès.")
-    else:
-        print("Suppression annulée.")
-
-# on créé la fonction menu_principal
-def menu_principal():
-    while True:
-        print("\n=== MENU PRINCIPAL ===")
-        print("1. Afficher les clients")
-        print("2. Ajouter un client")
-        print("3. Modifier un client")
-        print("4. Supprimer un client")
-        print("5. Quitter")
-        choix = input("Choisissez une option : ").strip()
-
-        if choix == '1':
-            afficher_clients()
-        elif choix == '2':
-            ajouter_client()
-        elif choix == '3':
-            modifier_client()
-        elif choix == '4':
-            supprimer_client()
-        elif choix == '5':
-            print("Au revoir !")
-            break
-        else:
-            print("Erreur : Option invalide.")
-
-# quand l'application est exécutée il n'y a rien qui est appelé hormis la fonction menu_principal
-# et c'est dans cette fonction que tout se pass et qu'on appelle les différents choix d'action juste au dessus
-if __name__ == "__main__":
-    menu_principal()
